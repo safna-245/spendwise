@@ -1,0 +1,72 @@
+#api call for create user account
+###
+POST  http://127.0.0.1:8000/v1/spending/register/
+Content-Type: application/json
+
+{
+    "username":"user2",
+    "email":"user2@gmail.com",
+    "password":"password@123"
+
+}
+
+#api call for get cuurent user detail
+###
+GET http://127.0.0.1:8000/v1/spending/me/
+Accept: application/json
+Authorization: Basic user:password@123
+
+#===Expense End points===
+#api call for list expenses
+
+###
+GET http://127.0.0.1:8000/v1/spending/expenses/
+Accept: application/json
+Authorization: Basic user1:password@123
+
+#api call for create expense
+###
+POST http://127.0.0.1:8000/v1/spending/expenses/
+Content-Type: application/json
+Authorization: Basic user2:password@123
+
+{
+    "title":"Mobile recharge",
+    "amount":299,
+    "category":"BILLS",
+    "payment_method":"upi"
+
+}
+
+#api call for retrievning expense
+###
+GET http://127.0.0.1:8000/v1/spending/expenses/1/
+Accept: application/json
+Authorization: Basic user2:password@123
+
+#api call for updating expense
+###
+PUT http://127.0.0.1:8000/v1/spending/expenses/1/
+Content-Type: application/json
+Authorization: Basic user2:password@123
+
+{
+  "id": 1,
+  "title": "school fee",
+  "amount": "3500",
+  "category": "BILLS",
+  "priority": "need",
+  "payment_method": "cash",
+  "created_at": "2026-10-09T06:08:25.758486Z",
+  "updated_at": "2026-10-09T06:08:25.758515Z",
+  "owner": 1
+}
+
+#api call for deleting expense
+###
+DELETE http://127.0.0.1:8000/v1/spending/expenses/2/
+Accept: application/json
+Authorization: Basic user1:password@123
+
+
+
