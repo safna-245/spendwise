@@ -117,7 +117,7 @@ class ExpenseRetrieveUpdateDeleteView(APIView):
 
         instance.delete()
 
-        return Response({"message":"deleted.."})
+        return Response({"message":"deleted..."})
 
 
 
