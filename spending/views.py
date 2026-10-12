@@ -9,6 +9,7 @@ from spending.serializers import UserSerializer,ExpenseSerializer
 from django.contrib.auth.models import User
 
 from spending.models import Expense
+from spending.permissions import IsOwner
 
 # Create your views here.
 class SignUpView(APIView):
@@ -35,7 +36,7 @@ class SignUpView(APIView):
 
 class GetMeView(APIView): 
 
-    authentication_classes = [authentication.BasicAuthentication]
+    authentication_classes = [authentication.TokenAuthentication]
 
     permission_classes = [permissions.IsAuthenticated]
 
@@ -51,7 +52,7 @@ class GetMeView(APIView):
 
 class ExpenseListCreateView(APIView):
 
-    authentication_classes = [authentication.BasicAuthentication]
+    authentication_classes = [authentication.TokenAuthentication]
 
     permission_classes = [permissions.IsAuthenticated]
 
@@ -81,13 +82,17 @@ class ExpenseListCreateView(APIView):
         
 class ExpenseRetrieveUpdateDeleteView(APIView):
 
-    authentication_classes = [authentication.BasicAuthentication]
+    authentication_classes = [authentication.TokenAuthentication]
     
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
+
+    permission_classes = [IsOwner]
 
     def get(self,request,pk=None):
 
         instance = get_object_or_404(Expense,id=pk)
+
+        self.check_object_permissions(request,instance)
 
         serializer_instance = ExpenseSerializer(instance)
 
@@ -96,6 +101,8 @@ class ExpenseRetrieveUpdateDeleteView(APIView):
     def put(self,request,pk=None):
 
         instance = get_object_or_404(Expense,id=pk)
+
+        self.check_object_permissions(request,instance)
 
         form_data =  request.data
 
@@ -114,6 +121,8 @@ class ExpenseRetrieveUpdateDeleteView(APIView):
     def delete(self,request,pk=None):
 
         instance = get_object_or_404(Expense,id=pk)
+
+        self.check_object_permissions(request,instance)
 
         instance.delete()
 

@@ -4,17 +4,27 @@ POST  http://127.0.0.1:8000/v1/spending/register/
 Content-Type: application/json
 
 {
-    "username":"user2",
-    "email":"user2@gmail.com",
+    "username":"user3",
+    "email":"user3@gmail.com",
     "password":"password@123"
 
+}
+
+#api call for generate token
+###
+POST http://127.0.0.1:8000/v1/spending/token/
+Content-Type: application/json
+
+{
+    "username":"user2",
+    "password":"password@123"
 }
 
 #api call for get cuurent user detail
 ###
 GET http://127.0.0.1:8000/v1/spending/me/
 Accept: application/json
-Authorization: Basic user:password@123
+Authorization: Token be9f8bc095603a85be67a5c5f709d167f3c5fef8
 
 #===Expense End points===
 #api call for list expenses
@@ -22,13 +32,13 @@ Authorization: Basic user:password@123
 ###
 GET http://127.0.0.1:8000/v1/spending/expenses/
 Accept: application/json
-Authorization: Basic user1:password@123
+Authorization: Token be9f8bc095603a85be67a5c5f709d167f3c5fef8
 
 #api call for create expense
 ###
 POST http://127.0.0.1:8000/v1/spending/expenses/
 Content-Type: application/json
-Authorization: Basic user2:password@123
+Authorization: Token be9f8bc095603a85be67a5c5f709d167f3c5fef8
 
 {
     "title":"Mobile recharge",
@@ -38,17 +48,17 @@ Authorization: Basic user2:password@123
 
 }
 
-#api call for retrievning expense
+#api call for retrieving expense
 ###
 GET http://127.0.0.1:8000/v1/spending/expenses/1/
 Accept: application/json
-Authorization: Basic user2:password@123
+Authorization: Token be9f8bc095603a85be67a5c5f709d167f3c5fef8
 
 #api call for updating expense
 ###
 PUT http://127.0.0.1:8000/v1/spending/expenses/1/
 Content-Type: application/json
-Authorization: Basic user2:password@123
+Authorization: Token be9f8bc095603a85be67a5c5f709d167f3c5fef8
 
 {
   "id": 1,
@@ -64,9 +74,10 @@ Authorization: Basic user2:password@123
 
 #api call for deleting expense
 ###
-DELETE http://127.0.0.1:8000/v1/spending/expenses/2/
+DELETE http://127.0.0.1:8000/v1/spending/expenses/1/
 Accept: application/json
-Authorization: Basic user1:password@123
+Authorization: Token be9f8bc095603a85be67a5c5f709d167f3c5fef8
+
 
 
 
