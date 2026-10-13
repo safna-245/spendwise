@@ -16,7 +16,7 @@ POST http://127.0.0.1:8000/v1/spending/token/
 Content-Type: application/json
 
 {
-    "username":"user2",
+    "username":"user1",
     "password":"password@123"
 }
 
@@ -41,9 +41,9 @@ Content-Type: application/json
 Authorization: Token be9f8bc095603a85be67a5c5f709d167f3c5fef8
 
 {
-    "title":"Mobile recharge",
-    "amount":299,
-    "category":"BILLS",
+    "title":"Medicine",
+    "amount":300,
+    "category":"HEALTH",
     "payment_method":"upi"
 
 }
@@ -75,6 +75,12 @@ Authorization: Token be9f8bc095603a85be67a5c5f709d167f3c5fef8
 #api call for deleting expense
 ###
 DELETE http://127.0.0.1:8000/v1/spending/expenses/1/
+Accept: application/json
+Authorization: Token be9f8bc095603a85be67a5c5f709d167f3c5fef8
+
+#api call for summary
+###
+GET http://127.0.0.1:8000/v1/spending/expenses/summary/
 Accept: application/json
 Authorization: Token be9f8bc095603a85be67a5c5f709d167f3c5fef8
 
